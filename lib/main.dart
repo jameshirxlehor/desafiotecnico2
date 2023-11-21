@@ -1,14 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
-  Response response;
-  Dio dio = Dio();
-  response = await dio.get('https://escribo.com/books.json');
-  print(response.data.toString());
-  List listaLivros = (response.data as List).map((item) {
-    return livrosArquivos.fromJson(item);
-  }).toList();
   runApp(
     MaterialApp(
       home: MyApp(),
@@ -34,7 +30,7 @@ class _MyAppState extends State<MyApp> {
             'Estante Virtual',
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Color.fromRGBO(83, 132, 86, 1),
+          backgroundColor: Colors.blueGrey,
         ),
         body: Padding(
           padding: EdgeInsets.all(6),
@@ -52,19 +48,21 @@ class _MyAppState extends State<MyApp> {
                       )
                     ],
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                       livro(
+                        livro(
                             tituloLivro: 'Kazan',
                             autorLivro: 'Curwood, James Oliver',
                             capaLivro:
-                                'https://www.gutenberg.org/cache/epub/72127/pg72127.cover.medium.jpg'),
+                            'https://www.gutenberg.org/cache/epub/72127/pg72127.cover.medium.jpg'),
                       ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -73,23 +71,25 @@ class _MyAppState extends State<MyApp> {
                             autorLivro: 'Oswald, Felix L.',
                             capaLivro:
                             'https://www.gutenberg.org/cache/epub/72134/pg72134.cover.medium.jpg'),
-                        ],
-                    ),
-                  ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                       livro(
-                            tituloLivro:
-                                'The octopus: or, The "devil-fish" of fiction and of fact',
-                            autorLivro: 'Henry Lee',
-                            capaLivro:
-                                'https://www.gutenberg.org/cache/epub/72133/pg72133.cover.medium.jpg'),
                       ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        livro(
+                            tituloLivro:
+                            'The octopus: or, The "devil-fish" of fiction and of fact',
+                            autorLivro: 'Henry Lee',
+                            capaLivro:
+                            'https://www.gutenberg.org/cache/epub/72133/pg72133.cover.medium.jpg'),
+                      ],
+                    ),
+                  ),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -98,24 +98,26 @@ class _MyAppState extends State<MyApp> {
                             autorLivro: 'Affonso Celso',
                             capaLivro:
                             'https://www.gutenberg.org/cache/epub/63606/pg63606.cover.medium.jpg'),
-                        ],
+                      ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         livro(
                           tituloLivro:
-                              'The History of England in Three Volumes, Vol.III.',
+                          'The History of England in Three Volumes, Vol.III.',
                           autorLivro: 'Edward Farr and E. H. Nolan',
                           capaLivro:
-                              'https://www.gutenberg.org/cache/epub/19218/pg19218.cover.medium.jpg',
+                          'https://www.gutenberg.org/cache/epub/19218/pg19218.cover.medium.jpg',
                         ),
                       ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -128,7 +130,8 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -136,15 +139,16 @@ class _MyAppState extends State<MyApp> {
                             tituloLivro: 'Mythen en sagen uit West-Indië',
                             autorLivro: 'Cappelle, Herman van, Jr.',
                             capaLivro:
-                                'https://www.gutenberg.org/cache/epub/72126/pg72126.cover.medium.jpg'),
-                       ],
+                            'https://www.gutenberg.org/cache/epub/72126/pg72126.cover.medium.jpg'),
+                      ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                      livro(
+                        livro(
                             tituloLivro:
                             'Nuorta ja vanhaa väkeä: Kokoelma kertoelmia',
                             autorLivro: 'Fredrik Nycander',
@@ -153,7 +157,8 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -161,7 +166,7 @@ class _MyAppState extends State<MyApp> {
                             tituloLivro: 'Adventures of Huckleberry Finn',
                             autorLivro: 'Mark Twain',
                             capaLivro:
-                                'https://www.gutenberg.org/cache/epub/76/pg76.cover.medium.jpg'),
+                            'https://www.gutenberg.org/cache/epub/76/pg76.cover.medium.jpg'),
                       ],
                     ),
                   ),
@@ -170,7 +175,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        backgroundColor: Color.fromRGBO(83, 132, 86, 1),
+        backgroundColor: Colors.deepPurpleAccent,
       ),
     );
   }
@@ -193,74 +198,49 @@ class _favoritosTelaState extends State<favoritosTela> {
             'Estante Virtual',
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Color.fromRGBO(83, 132, 86, 1),
+          backgroundColor: Colors.blueGrey,
         ),
         body: Padding(
           padding: const EdgeInsets.all(6),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      botaoLivros(
-                        tituloBotao: "Livros",
-                      ),
-                      botaoFavoritos(
-                        tituloBotao: "Favoritos",
-                      )
-                    ],
-                  ),
-                  Container(decoration: BoxDecoration(border: Border.all(color: Colors.black),),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        livro(
-                            tituloLivro: 'The Bible of Nature',
-                            autorLivro: 'Oswald, Felix L.',
-                            capaLivro:
-                                'https://www.gutenberg.org/cache/epub/72134/pg72134.cover.medium.jpg'),
-                      ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    botaoLivros(
+                      tituloBotao: "Livros",
                     ),
-                  ),
-                  Row(
+                    botaoFavoritos(
+                      tituloBotao: "Favoritos",
+                    )
+                  ],
+                ),
+                Container(decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      livro(
-                          tituloLivro: 'The Bible of Nature',
-                          autorLivro: 'Oswald, Felix L.',
-                          capaLivro:
-                              'https://www.gutenberg.org/cache/epub/72134/pg72134.cover.medium.jpg'),
-                    ],
+                    children: [],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      livro(
-                          tituloLivro: 'The Bible of Nature',
-                          autorLivro: 'Oswald, Felix L.',
-                          capaLivro:
-                              'https://www.gutenberg.org/cache/epub/72134/pg72134.cover.medium.jpg'),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      livro(
-                          tituloLivro: 'The Bible of Nature',
-                          autorLivro: 'Oswald, Felix L.',
-                          capaLivro:
-                              'https://www.gutenberg.org/cache/epub/72134/pg72134.cover.medium.jpg'),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [],
+                ),
+              ],
             ),
           ),
         ),
-        backgroundColor: Color.fromRGBO(83, 132, 86, 1),
+        backgroundColor: Colors.lightBlue,
       ),
     );
   }
@@ -271,11 +251,10 @@ class livro extends StatefulWidget {
   final String tituloLivro;
   final String capaLivro;
 
-  const livro(
-      {super.key,
-      required this.autorLivro,
-      required this.tituloLivro,
-      required this.capaLivro});
+  const livro({super.key,
+    required this.autorLivro,
+    required this.tituloLivro,
+    required this.capaLivro});
 
   @override
   State<livro> createState() => _livroState();
@@ -291,14 +270,17 @@ class _livroState extends State<livro> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: 350,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(widget.capaLivro),
+            InkWell(
+              onTap: () {},
+              child: Ink(
+                height: 350,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                  image: DecorationImage(
+                    image: NetworkImage(widget.capaLivro),
+                  ),
                 ),
               ),
             ),
@@ -307,7 +289,8 @@ class _livroState extends State<livro> {
                 children: [
                   Text(
                     widget.tituloLivro,
-                    style: const TextStyle(fontStyle: FontStyle.italic),
+                    style: const TextStyle(
+                        fontStyle: FontStyle.italic, fontSize: 20),
                   ),
                 ],
               ),
@@ -317,7 +300,8 @@ class _livroState extends State<livro> {
                 children: [
                   Text(
                     widget.autorLivro,
-                    style: const TextStyle(fontStyle: FontStyle.italic),
+                    style: const TextStyle(
+                        fontStyle: FontStyle.italic, fontSize: 20),
                   ),
                 ],
               ),
@@ -395,35 +379,4 @@ class _botaoFavoritosState extends State<botaoFavoritos> {
       ),
     );
   }
-}
-
-class livrosArquivos {
-  final int id;
-  final String title;
-  final String author;
-  final String cover_url;
-  final String download_url;
-
-  livrosArquivos(
-      {required this.id,
-      required this.title,
-      required this.author,
-      required this.cover_url,
-      required this.download_url});
-
-  factory livrosArquivos.fromJson(Map<String, dynamic> json) => livrosArquivos(
-        id: json["id"],
-        title: json['title'],
-        author: json['author'],
-        cover_url: json['cover_url'],
-        download_url: json['download_url'],
-      );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'author': author,
-        'cover_url': cover_url,
-        'download_url': download_url,
-      };
 }
